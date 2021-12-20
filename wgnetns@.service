@@ -1,0 +1,16 @@
+[Unit]
+Description=WireGuard-ed network namespace %i
+Documentation=https://www.wireguard.com/netns/
+Documentation=man:ip-netns(8)
+
+
+[Service]
+ExecStart=/usr/bin/wgnetns up %i
+
+# ExecStopPost runs not only when the unit stops, but also if it fails to start
+ExecStopPost=/usr/bin/wgnetns down %i
+
+# The network namespace stays after `wgnetns up` exits
+RemainAfterExit=yes
+
+Type=oneshot
