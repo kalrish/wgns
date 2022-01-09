@@ -1,0 +1,13 @@
+#!/usr/bin/make -f
+
+
+#.PHONY: install
+
+export DH_VERBOSE=1
+
+override_dh_auto_build:
+	sed -e '1s .* #!/bin/bash ' -- wgnetns.sh > wgnetns
+	chmod +x -- wgnetns
+
+%:
+	dh $@

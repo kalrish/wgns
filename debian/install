@@ -1,0 +1,2 @@
+wgnetns usr/bin
+wgnetns@.service lib/systemd/system
