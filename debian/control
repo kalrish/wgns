@@ -1,13 +1,13 @@
 Source: wgnetns
 Build-Depends:
-	debhelper-compat (= 12),
+	debhelper-compat (= 13),
 Homepage: https://github.com/wgnetns
 Maintainer: David Joaquín Shourabi Porcel <david@djsp.eu>
 Priority: optional
 Rules-Requires-Root: no
 Section: admin
-Standards-Version: 4.5.0
-Vcs-Browser: https://github.com/wgnetns/core/tree/ubuntu/focal
+Standards-Version: 4.5.1
+Vcs-Browser: https://github.com/wgnetns/core/tree/ubuntu/impish
 Vcs-Git: https://github.com/wgnetns/core.git
 
 Package: wgnetns
