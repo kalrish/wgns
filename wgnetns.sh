@@ -63,24 +63,37 @@ then
 				#
 			echo "info: WireGuard interface created under temporary name '${interface}'" >&2
 
-			# Move the WireGuard interface into the new network namespace
-			ip \
-				link set \
-				dev "${interface}" \
-				netns "${namespace}" \
-				#
-			echo "debug: WireGuard interface '${interface}' moved into network namespace '${namespace}'" >&2
+			# Try to move the WireGuard interface into the new network namespace
+			if
+				ip \
+					link set \
+					dev "${interface}" \
+					netns "${namespace}" \
+					#
+			then
+				echo "debug: WireGuard interface '${interface}' moved into network namespace '${namespace}'" >&2
 
-			# Network devices in different network namespaces can have the same name.
-			# Take advantage of this to provide the WireGuard interface with a more
-			# reasonable name.
-			ip \
-				-netns "${namespace}" \
-				link set \
-				dev "${interface}" \
-				name wg0 \
-				#
-			echo "debug: WireGuard interface renamed to 'wg0' inside network namespace '${namespace}'" >&2
+				# Network devices in different network namespaces can have the same name.
+				# Take advantage of this to provide the WireGuard interface with a more
+				# reasonable name.
+				ip \
+					-netns "${namespace}" \
+					link set \
+					dev "${interface}" \
+					name wg0 \
+					#
+				echo "debug: WireGuard interface renamed to 'wg0' inside network namespace '${namespace}'" >&2
+			else
+				echo "error: cannot move WireGuard interface '${interface}' into network namespace '${namespace}'" >&2
+				exit_code=1
+
+				ip \
+					-netns "${namespace}" \
+					link delete \
+					dev "${interface}" \
+					#
+				echo "info: WireGuard interface '${interface}' deleted" >&2
+			fi
 			;;
 		*)
 			show_usage
