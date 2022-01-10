@@ -1,0 +1,2 @@
+# An init.d script wouldn't make sense for wgnetns
+package-supports-alternative-init-but-no-init.d-script
