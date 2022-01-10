@@ -15,7 +15,7 @@ function show_usage
 	echo "usage: $0 <up|down> NAMESPACE" >&2
 }
 
-if [[ $@ == help ]]
+if [[ $@ = ?(-)?(-)help ]]
 then
 	show_usage
 elif [[ $# -eq 2 ]]
