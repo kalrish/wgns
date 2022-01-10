@@ -1,3 +1,9 @@
+wgnetns (1.0.0-ubuntu~21.10+1) impish; urgency=low
+
+  * First release.
+
+ -- David Joaquín Shourabi Porcel <david@djsp.eu>  Tue, 11 Jan 2022 04:30:00 +0100
+
 wgnetns (1.0.0-ubuntu~20.04+1) focal; urgency=low
 
   * First release.
