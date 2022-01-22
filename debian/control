@@ -21,3 +21,5 @@ Description: Wireguard-ed network namespace setup framework
  single route for outbound (and inbound) traffic.
 Recommends:
 	systemd,
+Suggests:
+	wireguard-tools,
