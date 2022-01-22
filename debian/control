@@ -15,6 +15,7 @@ Architecture: all
 Depends:
 	${misc:Depends},
 	bash (>= 5.0),
+	iproute2,
 Description: Wireguard-ed network namespace setup framework
  Framework to manage Linux network namespaces with a Wireguard interface as
  single route for outbound (and inbound) traffic.
