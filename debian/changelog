@@ -1,3 +1,10 @@
+wgnetns (1.0.0-ubuntu~20.04+2) focal; urgency=low
+
+  * Added missing runtime dependency on package `iproute2`.
+  * Added installation suggestion for package `wireguard-tools`.
+
+ -- David Joaquín Shourabi Porcel <david@djsp.eu>  Sat, 22 Jan 2022 22:45:00 +0100
+
 wgnetns (1.0.0-ubuntu~20.04+1) focal; urgency=low
 
   * First release.
