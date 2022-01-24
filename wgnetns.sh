@@ -49,9 +49,16 @@ then
 			# Network devices within the same network namespace must have unique names.
 			# Since the WireGuard interface is created in a shared namespace at first,
 			# steps must be taken to reduce the risk of a name collision.
-			# For `$RANDOM` see the Bash manual:
-			# https://www.gnu.org/software/bash/manual/bash#index-RANDOM
-			interface="wgnetns-${RANDOM}"
+			if [[ ${BASH_VERSINFO[0]}${BASH_VERSINFO[1]} -ge 51 ]]
+			then
+				# `$SRANDOM` was introduced in Bash version 5.1
+				# https://www.gnu.org/software/bash/manual/bash#index-SRANDOM
+				random_suffix="$(( SRANDOM % 999999 ))"
+			else
+				# https://www.gnu.org/software/bash/manual/bash#index-RANDOM
+				random_suffix="${RANDOM}"
+			fi
+			interface="wgnetns-${random_suffix}"
 			# The WireGuard interface is renamed to `wg0` later, once it has been moved
 			# into its own namespace
 
