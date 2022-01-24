@@ -1,3 +1,9 @@
+wgnetns (1.0.1-1) focal; urgency=low
+
+  * Fixed spelling of "WireGuard".
+
+ -- David Joaquín Shourabi Porcel <david@djsp.eu>  Mon, 24 Jan 2022 16:02:00 +0100
+
 wgnetns (1.0.0-ubuntu~20.04+3) focal; urgency=low
 
   * Added missing runtime dependency on package `wireguard`.
