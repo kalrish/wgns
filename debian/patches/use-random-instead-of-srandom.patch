@@ -8,7 +8,7 @@ Index: core/wgnetns.sh
 +++ core/wgnetns.sh
 @@ -49,9 +49,9 @@ then
  			# Network devices within the same network namespace must have unique names.
- 			# Since the Wireguard interface is created in a shared namespace at first,
+ 			# Since the WireGuard interface is created in a shared namespace at first,
  			# steps must be taken to reduce the risk of a name collision.
 -			# For `$SRANDOM` see the Bash manual:
 -			# https://www.gnu.org/software/bash/manual/bash#index-SRANDOM
@@ -16,6 +16,6 @@ Index: core/wgnetns.sh
 +			# For `$RANDOM` see the Bash manual:
 +			# https://www.gnu.org/software/bash/manual/bash#index-RANDOM
 +			interface="wgnetns-${RANDOM}"
- 			# The Wireguard interface is renamed to `wg0` later, once it has been moved
+ 			# The WireGuard interface is renamed to `wg0` later, once it has been moved
  			# into its own namespace
  
