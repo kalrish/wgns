@@ -1,5 +1,5 @@
 [Unit]
-Description=Wireguard-ed network namespace %i
+Description=WireGuard-ed network namespace %i
 Documentation=https://www.wireguard.com/netns/
 Documentation=man:ip-netns(8)
 

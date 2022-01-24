@@ -35,7 +35,7 @@ then
 				"${namespace}" \
 				#
 			echo "info: network namespace '${namespace}' deleted" >&2
-			# The Wireguard interface within the namespace is deleted automatically,
+			# The WireGuard interface within the namespace is deleted automatically,
 			# so it isn't necessary to run `ip -netns ${namespace} link delete dev wg0`
 			;;
 		up)
@@ -47,23 +47,23 @@ then
 			echo "info: network namespace '${namespace}' created" >&2
 
 			# Network devices within the same network namespace must have unique names.
-			# Since the Wireguard interface is created in a shared namespace at first,
+			# Since the WireGuard interface is created in a shared namespace at first,
 			# steps must be taken to reduce the risk of a name collision.
 			# For `$SRANDOM` see the Bash manual:
 			# https://www.gnu.org/software/bash/manual/bash#index-SRANDOM
 			interface="wgnetns-$(( SRANDOM % 999999 ))"
-			# The Wireguard interface is renamed to `wg0` later, once it has been moved
+			# The WireGuard interface is renamed to `wg0` later, once it has been moved
 			# into its own namespace
 
-			# Create the Wireguard interface in the current network namespace
+			# Create the WireGuard interface in the current network namespace
 			ip \
 				link add \
 				dev "${interface}" \
 				type wireguard \
 				#
-			echo "info: Wireguard interface created under temporary name '${interface}'" >&2
+			echo "info: WireGuard interface created under temporary name '${interface}'" >&2
 
-			# Try to move the Wireguard interface into the new network namespace
+			# Try to move the WireGuard interface into the new network namespace
 			if
 				ip \
 					link set \
@@ -71,10 +71,10 @@ then
 					netns "${namespace}" \
 					#
 			then
-				echo "debug: Wireguard interface '${interface}' moved into network namespace '${namespace}'" >&2
+				echo "debug: WireGuard interface '${interface}' moved into network namespace '${namespace}'" >&2
 
 				# Network devices in different network namespaces can have the same name.
-				# Take advantage of this to provide the Wireguard interface with a more
+				# Take advantage of this to provide the WireGuard interface with a more
 				# reasonable name.
 				ip \
 					-netns "${namespace}" \
@@ -82,16 +82,16 @@ then
 					dev "${interface}" \
 					name wg0 \
 					#
-				echo "debug: Wireguard interface renamed to 'wg0' inside network namespace '${namespace}'" >&2
+				echo "debug: WireGuard interface renamed to 'wg0' inside network namespace '${namespace}'" >&2
 			else
-				echo "error: failed to move Wireguard interface '${interface}' into network namespace '${namespace}'" >&2
+				echo "error: failed to move WireGuard interface '${interface}' into network namespace '${namespace}'" >&2
 
 				ip \
 					-netns "${namespace}" \
 					link delete \
 					dev "${interface}" \
 					#
-				echo "info: Wireguard interface '${interface}' deleted" >&2
+				echo "info: WireGuard interface '${interface}' deleted" >&2
 			fi
 			;;
 		*)
